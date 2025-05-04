@@ -1,0 +1,1490 @@
+{
+  "handlers": [
+    {
+      "type": "function",
+      "position": 0,
+      "operations": [
+        {
+          "action": "set_variable_voronoi_noise_3d",
+          "values": [
+            {
+              "name": "range_mode",
+              "value": {
+                "type": "enum",
+                "enum": "FULL_RANGE"
+              }
+            },
+            {
+              "name": "enable_distance",
+              "value": {
+                "type": "enum",
+                "enum": "TRUE"
+              }
+            },
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "noise",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "location",
+              "value": {
+                "type": "variable",
+                "variable": "copyLoc",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "seed",
+              "value": {
+                "type": "variable",
+                "variable": "key",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "frequency",
+              "value": {
+                "type": "number",
+                "number": 0.05
+              }
+            },
+            {
+              "name": "displacement",
+              "value": {
+                "type": "number",
+                "number": 0.0
+              }
+            }
+          ]
+        }
+      ],
+      "values": [
+        {
+          "name": "description",
+          "value": {
+            "type": "array",
+            "values": [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          }
+        },
+        {
+          "name": "is_hidden",
+          "value": {
+            "type": "enum",
+            "enum": "FALSE"
+          }
+        },
+        {
+          "name": "icon",
+          "value": {
+            "type": "item",
+            "item": "AAAAAAAAAAA="
+          }
+        }
+      ],
+      "name": "voronoiNoise"
+    },
+    {
+      "type": "function",
+      "position": 1,
+      "operations": [
+        {
+          "action": "set_variable_get_list_value",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "interval",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "list",
+              "value": {
+                "type": "variable",
+                "variable": "intervals",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "number",
+              "value": {
+                "type": "number",
+                "number": 0.0
+              }
+            },
+            {
+              "name": "default_value",
+              "value": {}
+            }
+          ]
+        },
+        {
+          "action": "set_variable_value",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "counter",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "value",
+              "value": {
+                "type": "number",
+                "number": 0.0
+              }
+            }
+          ]
+        },
+        {
+          "action": "repeat_while",
+          "values": [
+            {
+              "name": "value",
+              "value": {
+                "type": "variable",
+                "variable": "noise",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "compare",
+              "value": {
+                "type": "variable",
+                "variable": "interval",
+                "scope": "local"
+              }
+            }
+          ],
+          "operations": [
+            {
+              "action": "set_variable_increment",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "counter",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "number",
+                  "value": {}
+                }
+              ]
+            },
+            {
+              "action": "set_variable_get_list_value",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "interval",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "list",
+                  "value": {
+                    "type": "variable",
+                    "variable": "intervals",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "variable",
+                    "variable": "counter",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "default_value",
+                  "value": {}
+                }
+              ]
+            }
+          ],
+          "conditional": {
+            "action": "if_variable_greater",
+            "is_inverted": false
+          }
+        },
+        {
+          "action": "set_variable_get_list_value",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "blocktype",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "list",
+              "value": {
+                "type": "variable",
+                "variable": "pallete",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "number",
+              "value": {
+                "type": "number",
+                "number": "%math(%var_local(counter)-1)"
+              }
+            },
+            {
+              "name": "default_value",
+              "value": {}
+            }
+          ]
+        }
+      ],
+      "values": [],
+      "name": "getBlockType"
+    },
+    {
+      "type": "function",
+      "position": 2,
+      "operations": [
+        {
+          "action": "set_variable_simplex_noise_3d",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "noiseScale",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "location",
+              "value": {
+                "type": "variable",
+                "variable": "copyLoc",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "seed",
+              "value": {
+                "type": "number",
+                "number": 6.0
+              }
+            },
+            {
+              "name": "loc_frequency",
+              "value": {
+                "type": "number",
+                "number": 0.03
+              }
+            },
+            {
+              "name": "octaves",
+              "value": {
+                "type": "number",
+                "number": 1.0
+              }
+            },
+            {
+              "name": "frequency",
+              "value": {}
+            },
+            {
+              "name": "amplitude",
+              "value": {}
+            },
+            {
+              "name": "range_mode",
+              "value": {
+                "type": "enum",
+                "enum": "ZERO_TO_ONE"
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_value",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "noiseScale",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "value",
+              "value": {
+                "type": "number",
+                "number": "%math(1 + 0.5*%var_local(noiseScale))"
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_get_all_coordinates",
+          "values": [
+            {
+              "name": "location",
+              "value": {
+                "type": "variable",
+                "variable": "copyLoc",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "x",
+              "value": {
+                "type": "variable",
+                "variable": "x",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "y",
+              "value": {
+                "type": "variable",
+                "variable": "y",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "z",
+              "value": {
+                "type": "variable",
+                "variable": "z",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "yaw",
+              "value": {}
+            },
+            {
+              "name": "pitch",
+              "value": {}
+            }
+          ]
+        },
+        {
+          "action": "set_variable_set_all_coordinates",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "scaledLoc",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "x",
+              "value": {
+                "type": "number",
+                "number": "%math(%var_local(noiseScale)*%var_local(x))"
+              }
+            },
+            {
+              "name": "y",
+              "value": {
+                "type": "number",
+                "number": "%math(%var_local(noiseScale)*%var_local(y))"
+              }
+            },
+            {
+              "name": "z",
+              "value": {
+                "type": "number",
+                "number": "%math(%var_local(noiseScale)*%var_local(z))"
+              }
+            },
+            {
+              "name": "yaw",
+              "value": {}
+            },
+            {
+              "name": "pitch",
+              "value": {}
+            }
+          ]
+        },
+        {
+          "action": "set_variable_simplex_noise_3d",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "noise",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "location",
+              "value": {
+                "type": "variable",
+                "variable": "scaledLoc",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "seed",
+              "value": {
+                "type": "variable",
+                "variable": "key",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "loc_frequency",
+              "value": {
+                "type": "number",
+                "number": 0.05
+              }
+            },
+            {
+              "name": "octaves",
+              "value": {
+                "type": "number",
+                "number": 4.0
+              }
+            },
+            {
+              "name": "frequency",
+              "value": {
+                "type": "number",
+                "number": 1.0
+              }
+            },
+            {
+              "name": "amplitude",
+              "value": {
+                "type": "number",
+                "number": 4.0
+              }
+            }
+          ]
+        }
+      ],
+      "values": [
+        {
+          "name": "description",
+          "value": {
+            "type": "array",
+            "values": [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          }
+        },
+        {
+          "name": "is_hidden",
+          "value": {
+            "type": "enum",
+            "enum": "FALSE"
+          }
+        },
+        {
+          "name": "icon",
+          "value": {
+            "type": "item",
+            "item": "AAAAAAAAAAA="
+          }
+        }
+      ],
+      "name": "simplexNoise"
+    },
+    {
+      "type": "event",
+      "position": 3,
+      "operations": [
+        {
+          "action": "if_player_name_equals",
+          "values": [
+            {
+              "name": "names_or_uuids",
+              "value": {
+                "type": "array",
+                "values": [
+                  {
+                    "type": "text",
+                    "text": "Bamberghh",
+                    "parsing": "legacy"
+                  },
+                  {
+                    "type": "text",
+                    "text": "lemonhead2000",
+                    "parsing": "legacy"
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              }
+            }
+          ],
+          "operations": [
+            {
+              "action": "set_variable_subtract",
+              "values": [
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "number",
+                        "number": 1.0
+                      },
+                      {
+                        "type": "variable",
+                        "variable": "noiseGenShouldWork",
+                        "scope": "game"
+                      },
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  }
+                },
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "noiseGenShouldWork",
+                    "scope": "game"
+                  }
+                }
+              ]
+            },
+            {
+              "action": "if_variable_not_equals",
+              "values": [
+                {
+                  "name": "compare",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "number",
+                        "number": 1.0
+                      },
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  }
+                },
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "variable",
+                    "variable": "noiseGenShouldWork",
+                    "scope": "game"
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "action": "control_end_thread",
+                  "values": []
+                }
+              ]
+            },
+            {
+              "action": "player_send_message",
+              "selection": {
+                "type": "all_players"
+              },
+              "values": [
+                {
+                  "name": "messages",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "text",
+                        "text": "Генерация запущена",
+                        "parsing": "legacy"
+                      },
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "action": "set_variable_value",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "key",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "number",
+                    "number": 5.0
+                  }
+                }
+              ]
+            },
+            {
+              "action": "set_variable_value",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "loc",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "location",
+                    "x": -44.5000,
+                    "y": 4.50000,
+                    "z": 15.5000,
+                    "yaw": 0.0,
+                    "pitch": 0.0
+                  }
+                }
+              ]
+            },
+            {
+              "action": "set_variable_create_list",
+              "values": [
+                {
+                  "name": "values",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "item",
+                        "item": "H4sIAAAAAAAA/+NiYGBm4HZJLEkMSy0qzszPY2DgL+ZgYMpMYRDJzcxLTS5KTCuxSspJTM4uLsnPS2VmYE3OL80rYWBgYGQAAO25vS09AAAA"
+                      },
+                      {
+                        "type": "item",
+                        "item": "H4sIAAAAAAAA/+NiYGBm4HZJLEkMSy0qzszPY2DgL+ZgYMpMYRDPzcxLTS5KTCuxyi0tzijKz8+NLy5JzWVmYE3OL80rYWBgYGQAAAFrMu9AAAAA"
+                      },
+                      {
+                        "type": "item",
+                        "item": "H4sIAAAAAAAA/+NiYGBm4HZJLEkMSy0qzszPY2DgL+ZgYMpMYeDNzcxLTS5KTCuxyi1NYWZgTc4vzSthYGBgZAAAZlWONzYAAAA="
+                      },
+                      {
+                        "type": "item",
+                        "item": "H4sIAAAAAAAA/+NiYGBm4HZJLEkMSy0qzszPY2DgL+ZgYMpMYRDPzcxLTS5KTCuxKs7Nzy/JiE9KLE7MKWFmYE3OL80rYWBgYGQAAI1BwQNAAAAA"
+                      },
+                      {
+                        "type": "item",
+                        "item": "H4sIAAAAAAAA/+NiYGBm4HZJLEkMSy0qzszPY2DgL+ZgYMpMYRDOzcxLTS5KTCuxSklNLSjOSSxJZWZgTc4vzSthYGBgZAAAGqKDfTwAAAA="
+                      },
+                      {
+                        "type": "item",
+                        "item": "H4sIAAAAAAAA/+NiYGBm4HZJLEkMSy0qzszPY2DgL+ZgYMpMYRDIzcxLTS5KTCuxSkosTswpYWZgTc4vzSthYGBgZAAAPhk+njkAAAA="
+                      },
+                      {
+                        "type": "item",
+                        "item": "H4sIAAAAAAAA/+NiYGBm4HZJLEkMSy0qzszPY2DgL+ZgYMpMYRDIzcxLTS5KTCuxSi9KLEvNYWZgTc4vzSthYGBgZAAAmu+7nzkAAAA="
+                      },
+                      {
+                        "type": "item",
+                        "item": "H4sIAAAAAAAA/+NiYGBm4HZJLEkMSy0qzszPY2DgL+ZgYMpMYZDOzcxLTS5KTCuxSs5PSspJTYlPSU0tKM5JLEllZmBNzi/NK2FgYGBkAAA2Hoj/RAAAAA=="
+                      },
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  }
+                },
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "pallete",
+                    "scope": "local"
+                  }
+                }
+              ]
+            },
+            {
+              "action": "set_variable_create_list",
+              "values": [
+                {
+                  "name": "values",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "number",
+                        "number": -1.0
+                      },
+                      {
+                        "type": "number",
+                        "number": -0.85
+                      },
+                      {
+                        "type": "number",
+                        "number": -0.6
+                      },
+                      {
+                        "type": "number",
+                        "number": -0.4
+                      },
+                      {
+                        "type": "number",
+                        "number": -0.2
+                      },
+                      {
+                        "type": "number",
+                        "number": 0.1
+                      },
+                      {
+                        "type": "number",
+                        "number": 0.35
+                      },
+                      {
+                        "type": "number",
+                        "number": 0.65
+                      },
+                      {
+                        "type": "number",
+                        "number": 1.0
+                      },
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  }
+                },
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "intervals",
+                    "scope": "local"
+                  }
+                }
+              ]
+            },
+            {
+              "action": "repeat_multi_times",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {}
+                },
+                {
+                  "name": "amount",
+                  "value": {
+                    "type": "number",
+                    "number": 8883.0
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "action": "if_variable_not_equals",
+                  "values": [
+                    {
+                      "name": "compare",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "number",
+                            "number": 1.0
+                          },
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {}
+                        ]
+                      }
+                    },
+                    {
+                      "name": "value",
+                      "value": {
+                        "type": "variable",
+                        "variable": "noiseGenShouldWork",
+                        "scope": "game"
+                      }
+                    }
+                  ],
+                  "operations": [
+                    {
+                      "action": "player_send_message",
+                      "selection": {
+                        "type": "all_players"
+                      },
+                      "values": [
+                        {
+                          "name": "messages",
+                          "value": {
+                            "type": "array",
+                            "values": [
+                              {
+                                "type": "text",
+                                "text": "Генерация остановлена",
+                                "parsing": "legacy"
+                              },
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {}
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "action": "control_end_thread",
+                      "values": []
+                    }
+                  ]
+                },
+                {
+                  "action": "set_variable_get_coordinate",
+                  "values": [
+                    {
+                      "name": "type",
+                      "value": {
+                        "type": "enum",
+                        "enum": "Z"
+                      }
+                    },
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "currentZ",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "location",
+                      "value": {
+                        "type": "variable",
+                        "variable": "loc",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "set_variable_set_coordinate",
+                  "values": [
+                    {
+                      "name": "type",
+                      "value": {
+                        "type": "enum",
+                        "enum": "Z"
+                      }
+                    },
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "mirroredLoc",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "location",
+                      "value": {
+                        "type": "variable",
+                        "variable": "loc",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "coordinate",
+                      "value": {
+                        "type": "number",
+                        "number": "%math(31 + 127 - %var_local(currentZ))"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "set_variable_value",
+                  "values": [
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "copyLoc",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "value",
+                      "value": {
+                        "type": "variable",
+                        "variable": "loc",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "call_function",
+                  "values": [
+                    {
+                      "name": "function_name",
+                      "value": {
+                        "type": "text",
+                        "text": "simplexNoise",
+                        "parsing": "plain"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "call_function",
+                  "values": [
+                    {
+                      "name": "function_name",
+                      "value": {
+                        "type": "text",
+                        "text": "getBlockType",
+                        "parsing": "plain"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "set_variable_value",
+                  "values": [
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "blockType1",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "value",
+                      "value": {
+                        "type": "variable",
+                        "variable": "blocktype",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "set_variable_value",
+                  "values": [
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "copyLoc",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "value",
+                      "value": {
+                        "type": "variable",
+                        "variable": "mirroredLoc",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "call_function",
+                  "values": [
+                    {
+                      "name": "function_name",
+                      "value": {
+                        "type": "text",
+                        "text": "simplexNoise",
+                        "parsing": "plain"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "call_function",
+                  "values": [
+                    {
+                      "name": "function_name",
+                      "value": {
+                        "type": "text",
+                        "text": "getBlockType",
+                        "parsing": "plain"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "set_variable_value",
+                  "values": [
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "blockType2",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "value",
+                      "value": {
+                        "type": "variable",
+                        "variable": "blocktype",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "game_set_block",
+                  "values": [
+                    {
+                      "name": "locations",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "variable",
+                            "variable": "loc",
+                            "scope": "local"
+                          },
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {}
+                        ]
+                      }
+                    },
+                    {
+                      "name": "block",
+                      "value": {
+                        "type": "variable",
+                        "variable": "blockType1",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "game_set_block",
+                  "values": [
+                    {
+                      "name": "locations",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "variable",
+                            "variable": "mirroredLoc",
+                            "scope": "local"
+                          },
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {}
+                        ]
+                      }
+                    },
+                    {
+                      "name": "block",
+                      "value": {
+                        "type": "variable",
+                        "variable": "blockType2",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "set_variable_shift_coordinate",
+                  "values": [
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "loc",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "location",
+                      "value": {
+                        "type": "variable",
+                        "variable": "loc",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "distance",
+                      "value": {
+                        "type": "number",
+                        "number": -1.0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "set_variable_get_coordinate",
+                  "values": [
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "x",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "location",
+                      "value": {
+                        "type": "variable",
+                        "variable": "loc",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "if_variable_equals",
+                  "values": [
+                    {
+                      "name": "compare",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "number",
+                            "number": -184.5
+                          },
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {}
+                        ]
+                      }
+                    },
+                    {
+                      "name": "value",
+                      "value": {
+                        "type": "variable",
+                        "variable": "x",
+                        "scope": "local"
+                      }
+                    }
+                  ],
+                  "operations": [
+                    {
+                      "action": "set_variable_set_coordinate",
+                      "values": [
+                        {
+                          "name": "variable",
+                          "value": {
+                            "type": "variable",
+                            "variable": "loc",
+                            "scope": "local"
+                          }
+                        },
+                        {
+                          "name": "location",
+                          "value": {
+                            "type": "variable",
+                            "variable": "loc",
+                            "scope": "local"
+                          }
+                        },
+                        {
+                          "name": "coordinate",
+                          "value": {
+                            "type": "number",
+                            "number": -44.5
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "action": "set_variable_shift_coordinate",
+                      "values": [
+                        {
+                          "name": "type",
+                          "value": {
+                            "type": "enum",
+                            "enum": "Z"
+                          }
+                        },
+                        {
+                          "name": "variable",
+                          "value": {
+                            "type": "variable",
+                            "variable": "loc",
+                            "scope": "local"
+                          }
+                        },
+                        {
+                          "name": "location",
+                          "value": {
+                            "type": "variable",
+                            "variable": "loc",
+                            "scope": "local"
+                          }
+                        },
+                        {
+                          "name": "distance",
+                          "value": {
+                            "type": "number",
+                            "number": 1.0
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "action": "if_variable_greater",
+                  "values": [
+                    {
+                      "name": "value",
+                      "value": {
+                        "type": "game_value",
+                        "game_value": "cpu_usage",
+                        "selection": "null"
+                      }
+                    },
+                    {
+                      "name": "compare",
+                      "value": {
+                        "type": "number",
+                        "number": 40.0
+                      }
+                    }
+                  ],
+                  "operations": [
+                    {
+                      "action": "control_wait",
+                      "values": [
+                        {
+                          "name": "duration",
+                          "value": {
+                            "type": "number",
+                            "number": 10.0
+                          }
+                        },
+                        {
+                          "name": "time_unit",
+                          "value": {
+                            "type": "enum",
+                            "enum": "TICKS"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "event": "player_swap_hands"
+    }
+  ]
+}

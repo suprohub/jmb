@@ -1,0 +1,16 @@
+[package]
+name = "jmb"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[build-dependencies]
+regex = "1.11"
+itertools = "0.14"
+heck = "0.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
