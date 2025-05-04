@@ -2,9 +2,7 @@ use std::fs::{self};
 
 use serde::{Deserialize, Serialize};
 
-use crate::generated::{
-    ActionId, ActionObject, ActionType, ArgType, EventId, GameValueId, ValueType,
-};
+use crate::generated::{ActionId, ActionObject, ActionType, EventId, GameValueId, ValueType};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Event {
@@ -28,27 +26,8 @@ pub struct Action {
     pub args: Vec<Arg>,
 }
 
-#[derive(Serialize, Debug)]
-pub enum Arg {
-    Any,
-}
-
-impl<'de> Deserialize<'de> for Arg {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        // Skip id
-        //let _ = String::deserialize(deserializer)?;
-
-        // Parse type
-        match ArgType::deserialize(deserializer)? {
-            _ => {}
-        }
-
-        Ok(Arg::Any)
-    }
-}
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Arg;
 
 pub fn get_assets() -> Result<(Vec<Event>, Vec<GameValue>, Vec<Action>), Box<dyn std::error::Error>>
 {
