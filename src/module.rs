@@ -52,7 +52,9 @@ pub enum Arg {
     Item,
     Location,
     Map,
-    Number(Number),
+    Number {
+        number: Number,
+    },
     Particle,
     Potion,
     Sound,
