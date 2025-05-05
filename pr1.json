@@ -1,0 +1,2101 @@
+{
+  "handlers": [
+    {
+      "type": "process",
+      "position": 0,
+      "operations": [
+        {
+          "action": "call_function",
+          "values": [
+            {
+              "name": "function_name",
+              "value": {
+                "type": "text",
+                "text": "DeathPointsGen",
+                "parsing": "plain"
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_get_list_length",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "len",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "list",
+              "value": {
+                "type": "variable",
+                "variable": "PointDropList",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_value",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "counter",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "value",
+              "value": {
+                "type": "number",
+                "number": 0
+              }
+            }
+          ]
+        },
+        {
+          "action": "repeat_on_sphere",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "location",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "center",
+              "value": {
+                "type": "variable",
+                "variable": "DeathLocation",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "radius",
+              "value": {
+                "type": "number",
+                "number": 1
+              }
+            },
+            {
+              "name": "points",
+              "value": {
+                "type": "number",
+                "number": "%math(%var_local(len)-1)"
+              }
+            },
+            {
+              "name": "rotate_location",
+              "value": {
+                "type": "enum",
+                "enum": "INWARDS"
+              }
+            }
+          ],
+          "operations": [
+            {
+              "action": "set_variable_get_vector_between_locations",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "vector",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "start_location",
+                  "value": {
+                    "type": "variable",
+                    "variable": "location",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "end_location",
+                  "value": {
+                    "type": "variable",
+                    "variable": "DeathLocation",
+                    "scope": "local"
+                  }
+                }
+              ]
+            },
+            {
+              "action": "set_variable_multiply_vector",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "vector",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "vector",
+                  "value": {
+                    "type": "variable",
+                    "variable": "vector",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "multiplier",
+                  "value": {
+                    "type": "number",
+                    "number": "%math(2*%random%-0.5)"
+                  }
+                }
+              ]
+            },
+            {
+              "action": "set_variable_get_list_value",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "sum",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "list",
+                  "value": {
+                    "type": "variable",
+                    "variable": "PointDropList",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "variable",
+                    "variable": "counter",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "default_value",
+                  "value": {}
+                }
+              ]
+            },
+            {
+              "action": "set_variable_increment",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "counter",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "number",
+                  "value": {}
+                }
+              ]
+            },
+            {
+              "action": "set_variable_value",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "pointType",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "number",
+                    "number": 0
+                  }
+                }
+              ]
+            },
+            {
+              "action": "call_function",
+              "values": [
+                {
+                  "name": "function_name",
+                  "value": {
+                    "type": "text",
+                    "text": "PointIntervals",
+                    "parsing": "plain"
+                  }
+                }
+              ]
+            },
+            {
+              "action": "if_variable_is_type",
+              "values": [
+                {
+                  "name": "variable_type",
+                  "value": {
+                    "type": "enum",
+                    "enum": "ITEM"
+                  }
+                },
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "variable",
+                    "variable": "pointType",
+                    "scope": "local"
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "action": "set_variable_set_item_custom_tag",
+                  "values": [
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "point",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "item",
+                      "value": {
+                        "type": "variable",
+                        "variable": "pointType",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "tag_name",
+                      "value": {
+                        "type": "text",
+                        "text": "cost",
+                        "parsing": "legacy"
+                      }
+                    },
+                    {
+                      "name": "tag_value",
+                      "value": {
+                        "type": "variable",
+                        "variable": "sum",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "set_variable_set_item_custom_tag",
+                  "values": [
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "point",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "item",
+                      "value": {
+                        "type": "variable",
+                        "variable": "point",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "tag_name",
+                      "value": {
+                        "type": "text",
+                        "text": "stackable",
+                        "parsing": "legacy"
+                      }
+                    },
+                    {
+                      "name": "tag_value",
+                      "value": {
+                        "type": "game_value",
+                        "game_value": "uuid",
+                        "selection": "{\"type\":\"last_entity\"}"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "game_spawn_item",
+                  "values": [
+                    {
+                      "name": "item",
+                      "value": {
+                        "type": "variable",
+                        "variable": "point",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "location",
+                      "value": {
+                        "type": "variable",
+                        "variable": "DeathLocation",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "custom_name",
+                      "value": {
+                        "type": "text",
+                        "text": "&e%var_local(sum)◇",
+                        "parsing": "legacy"
+                      }
+                    },
+                    {
+                      "name": "can_mob_pickup",
+                      "value": {
+                        "type": "enum",
+                        "enum": "FALSE"
+                      }
+                    },
+                    {
+                      "name": "apply_motion",
+                      "value": {
+                        "type": "enum",
+                        "enum": "FALSE"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "entity_set_location",
+                  "selection": {
+                    "type": "last_entity"
+                  },
+                  "values": [
+                    {
+                      "name": "increment",
+                      "value": {
+                        "type": "enum",
+                        "enum": "FALSE"
+                      }
+                    },
+                    {
+                      "name": "velocity",
+                      "value": {
+                        "type": "variable",
+                        "variable": "vector",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "entity_set_custom_name_visibility",
+                  "selection": {
+                    "type": "last_entity"
+                  },
+                  "values": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "values": [
+        {
+          "name": "description",
+          "value": {
+            "type": "array",
+            "values": [
+              {
+                "type": "text",
+                "text": "Алгоритм выпадения очков при смерти",
+                "parsing": "legacy"
+              },
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          }
+        },
+        {
+          "name": "is_hidden",
+          "value": {
+            "type": "enum",
+            "enum": "FALSE"
+          }
+        },
+        {
+          "name": "icon",
+          "value": {
+            "type": "item",
+            "item": "H4sIAAAAAAAA/41STWsUQRCtZNdld/y6GBFBGFu8BVFCNOxJMQeP4sHr0DtTu9NuT9cwXZPdNQSiFw8e9Cf4EyQaCBqTv9Dzj+xZxb5swD41Ve+9evURAXTg8q5k+Rorq8gAXLd9WFcZ3CqUwbSSYx7aKWpkMomd1lp34FJKtWEAWIsgSqkoyaBhG8GNwMkWmCUpaao60KkmI/iCT9e8eE6zRJmEiTSrEiCCO4EkmSs1qhmTgjI1Vt7TCs4ABv/SUeuiD11elAj3g9JbKkYKH9hSzkxSoTJjqlIsWps96MnibwPL14cBlVhJbvsfyCxL9qSu8c8YrgbNsZqDL34tRHx3HgbQBb0vls2KoZjlilFsCsVSq1QMx1Jb3BSMc/ZZ99n9dN/cWXPoTpr37jR2R81Hd+6+uu/u2P3ywU+xz35wP9yZO4rdeQuMm3fu1B03h55xIg5gXQh4ESree/Js5+HO9oU1X6lJzvFzn5nGTDH7bZZUcfuXXm3r/5XKilK0VhxEcDOMAU2aS8PL6a7YVwQ9jXuobTvqjUBLa8tUJEYWCI+DhwVqTbMLLeyi5PwlKV+rtXE76L2ppziieVJquZAj7TfTtWQmcCVAHm2tvsG7AZKrDBN/BKo9B6kDCn4DS96w8y0DAAA="
+          }
+        }
+      ],
+      "name": "DeathPoints"
+    },
+    {
+      "type": "function",
+      "position": 1,
+      "operations": [
+        {
+          "action": "set_variable_create_list",
+          "values": [
+            {
+              "name": "values",
+              "value": {
+                "type": "array",
+                "values": [
+                  {
+                    "type": "number",
+                    "number": 1
+                  },
+                  {
+                    "type": "number",
+                    "number": 3
+                  },
+                  {
+                    "type": "number",
+                    "number": 10
+                  },
+                  {
+                    "type": "number",
+                    "number": 15
+                  },
+                  {
+                    "type": "number",
+                    "number": 30
+                  },
+                  {
+                    "type": "number",
+                    "number": 50
+                  },
+                  {
+                    "type": "number",
+                    "number": 80
+                  },
+                  {
+                    "type": "number",
+                    "number": 120
+                  },
+                  {
+                    "type": "number",
+                    "number": 200
+                  },
+                  {
+                    "type": "number",
+                    "number": 500
+                  },
+                  {
+                    "type": "number",
+                    "number": 1000
+                  },
+                  {
+                    "type": "number",
+                    "number": 10000
+                  },
+                  {
+                    "type": "number",
+                    "number": 20000
+                  },
+                  {
+                    "type": "number",
+                    "number": 50000
+                  },
+                  {
+                    "type": "number",
+                    "number": 100000
+                  },
+                  {
+                    "type": "number",
+                    "number": 200000
+                  },
+                  {
+                    "type": "number",
+                    "number": 500000
+                  },
+                  {
+                    "type": "number",
+                    "number": 1000000
+                  },
+                  {
+                    "type": "number",
+                    "number": 20000000
+                  },
+                  {
+                    "type": "number",
+                    "number": 50000000
+                  },
+                  {
+                    "type": "number",
+                    "number": 100000000
+                  }
+                ]
+              }
+            },
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "Nominals",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_append_value",
+          "values": [
+            {
+              "name": "values",
+              "value": {
+                "type": "array",
+                "values": [
+                  {
+                    "type": "number",
+                    "number": 500000000
+                  },
+                  {
+                    "type": "number",
+                    "number": 1000000000
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              }
+            },
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "Nominals",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_create_list",
+          "values": [
+            {
+              "name": "values",
+              "value": {
+                "type": "array",
+                "values": [
+                  {
+                    "type": "number",
+                    "number": 0.2
+                  },
+                  {
+                    "type": "number",
+                    "number": 0.6
+                  },
+                  {
+                    "type": "number",
+                    "number": 0.8
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              }
+            },
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "NominalCoefficients",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_get_list_length",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "NominalsLen",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "list",
+              "value": {
+                "type": "variable",
+                "variable": "Nominals",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_create_list",
+          "values": [
+            {
+              "name": "values",
+              "value": {
+                "type": "array",
+                "values": [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              }
+            },
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "PointDropList",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_divide",
+          "values": [
+            {
+              "name": "value",
+              "value": {
+                "type": "array",
+                "values": [
+                  {
+                    "type": "variable",
+                    "variable": "player_pts",
+                    "scope": "local"
+                  },
+                  {
+                    "type": "number",
+                    "number": 2
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              }
+            },
+            {
+              "name": "division_mode",
+              "value": {
+                "type": "enum",
+                "enum": "FLOOR"
+              }
+            },
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "ToDrop",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_value",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "MaxNominalI",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "value",
+              "value": {
+                "type": "number",
+                "number": -2
+              }
+            }
+          ]
+        },
+        {
+          "action": "repeat_for_each_in_list",
+          "values": [
+            {
+              "name": "index_variable",
+              "value": {
+                "type": "variable",
+                "variable": "NominalI",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "value_variable",
+              "value": {
+                "type": "variable",
+                "variable": "Nominal",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "list",
+              "value": {
+                "type": "variable",
+                "variable": "Nominals",
+                "scope": "local"
+              }
+            }
+          ],
+          "operations": [
+            {
+              "action": "if_variable_greater",
+              "values": [
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "variable",
+                    "variable": "Nominal",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "compare",
+                  "value": {
+                    "type": "variable",
+                    "variable": "ToDrop",
+                    "scope": "local"
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "action": "set_variable_subtract",
+                  "values": [
+                    {
+                      "name": "value",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "variable",
+                            "variable": "NominalI",
+                            "scope": "local"
+                          },
+                          {
+                            "type": "number",
+                            "number": 1
+                          },
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {}
+                        ]
+                      }
+                    },
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "MaxNominalI",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "control_stop_repeat",
+                  "values": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "action": "set_variable_subtract",
+          "values": [
+            {
+              "name": "value",
+              "value": {
+                "type": "array",
+                "values": [
+                  {
+                    "type": "variable",
+                    "variable": "NominalsLen",
+                    "scope": "local"
+                  },
+                  {
+                    "type": "number",
+                    "number": 1
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              }
+            },
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "NominalsLastI",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_get_list_value",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "NominalsLast",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "list",
+              "value": {
+                "type": "variable",
+                "variable": "Nominals",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "number",
+              "value": {
+                "type": "variable",
+                "variable": "NominalsLastI",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "default_value",
+              "value": {}
+            }
+          ]
+        },
+        {
+          "action": "set_variable_log",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "NominalsLastLog",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "number",
+              "value": {
+                "type": "variable",
+                "variable": "NominalsLast",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "base",
+              "value": {
+                "type": "number",
+                "number": 10
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_subtract",
+          "values": [
+            {
+              "name": "value",
+              "value": {
+                "type": "array",
+                "values": [
+                  {
+                    "type": "variable",
+                    "variable": "NominalsLastI",
+                    "scope": "local"
+                  },
+                  {
+                    "type": "variable",
+                    "variable": "NominalsLastLog",
+                    "scope": "local"
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              }
+            },
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "LogToIndexOffset",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "if_variable_equals",
+          "values": [
+            {
+              "name": "compare",
+              "value": {
+                "type": "array",
+                "values": [
+                  {
+                    "type": "number",
+                    "number": -2
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              }
+            },
+            {
+              "name": "value",
+              "value": {
+                "type": "variable",
+                "variable": "MaxNominalI",
+                "scope": "local"
+              }
+            }
+          ],
+          "operations": [
+            {
+              "action": "set_variable_log",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "MaxNominalI",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "variable",
+                    "variable": "ToDrop",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "base",
+                  "value": {
+                    "type": "number",
+                    "number": 10
+                  }
+                }
+              ]
+            },
+            {
+              "action": "set_variable_increment",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "MaxNominalI",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "variable",
+                    "variable": "LogToIndexOffset",
+                    "scope": "local"
+                  }
+                }
+              ]
+            },
+            {
+              "action": "set_variable_round",
+              "values": [
+                {
+                  "name": "round_type",
+                  "value": {
+                    "type": "enum",
+                    "enum": "FLOOR"
+                  }
+                },
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "MaxNominalI",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "variable",
+                    "variable": "MaxNominalI",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "precision",
+                  "value": {}
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "action": "set_variable_create_list",
+          "values": [
+            {
+              "name": "values",
+              "value": {
+                "type": "array",
+                "values": [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              }
+            },
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "ChosenNominals",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "repeat_for_each_in_list",
+          "values": [
+            {
+              "name": "index_variable",
+              "value": {
+                "type": "variable",
+                "variable": "NominalCoefficientI",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "value_variable",
+              "value": {
+                "type": "variable",
+                "variable": "NominalCoefficient",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "list",
+              "value": {
+                "type": "variable",
+                "variable": "NominalCoefficients",
+                "scope": "local"
+              }
+            }
+          ],
+          "operations": [
+            {
+              "action": "set_variable_multiply",
+              "values": [
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "variable",
+                        "variable": "MaxNominalI",
+                        "scope": "local"
+                      },
+                      {
+                        "type": "variable",
+                        "variable": "NominalCoefficient",
+                        "scope": "local"
+                      },
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  }
+                },
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "NominalI",
+                    "scope": "local"
+                  }
+                }
+              ]
+            },
+            {
+              "action": "set_variable_round",
+              "values": [
+                {
+                  "name": "round_type",
+                  "value": {
+                    "type": "enum",
+                    "enum": "FLOOR"
+                  }
+                },
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "NominalI",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "variable",
+                    "variable": "NominalI",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "precision",
+                  "value": {}
+                }
+              ]
+            },
+            {
+              "action": "if_variable_less",
+              "values": [
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "variable",
+                    "variable": "NominalI",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "compare",
+                  "value": {
+                    "type": "variable",
+                    "variable": "NominalsLen",
+                    "scope": "local"
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "action": "set_variable_get_list_value",
+                  "values": [
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "Nominal",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "list",
+                      "value": {
+                        "type": "variable",
+                        "variable": "Nominals",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "number",
+                      "value": {
+                        "type": "variable",
+                        "variable": "NominalI",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "default_value",
+                      "value": {
+                        "type": "number",
+                        "number": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "action": "else",
+              "values": [],
+              "operations": [
+                {
+                  "action": "set_variable_subtract",
+                  "values": [
+                    {
+                      "name": "value",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "variable",
+                            "variable": "NominalI",
+                            "scope": "local"
+                          },
+                          {
+                            "type": "variable",
+                            "variable": "LogToIndexOffset",
+                            "scope": "local"
+                          },
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {},
+                          {}
+                        ]
+                      }
+                    },
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "Power",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "set_variable_round",
+                  "values": [
+                    {
+                      "name": "round_type",
+                      "value": {
+                        "type": "enum",
+                        "enum": "FLOOR"
+                      }
+                    },
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "Power",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "number",
+                      "value": {
+                        "type": "variable",
+                        "variable": "Power",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "precision",
+                      "value": {}
+                    }
+                  ]
+                },
+                {
+                  "action": "set_variable_pow",
+                  "values": [
+                    {
+                      "name": "variable",
+                      "value": {
+                        "type": "variable",
+                        "variable": "Nominal",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "base",
+                      "value": {
+                        "type": "number",
+                        "number": 10
+                      }
+                    },
+                    {
+                      "name": "power",
+                      "value": {
+                        "type": "variable",
+                        "variable": "Power",
+                        "scope": "local"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "action": "set_variable_append_value",
+              "values": [
+                {
+                  "name": "values",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "variable",
+                        "variable": "Nominal",
+                        "scope": "local"
+                      },
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  }
+                },
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "ChosenNominals",
+                    "scope": "local"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "action": "set_variable_sort_any_list",
+          "values": [
+            {
+              "name": "sort_mode",
+              "value": {
+                "type": "enum",
+                "enum": "DESCENDING"
+              }
+            },
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "ChosenNominals",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "list",
+              "value": {
+                "type": "variable",
+                "variable": "ChosenNominals",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "set_variable_remove_list_duplicates",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "ChosenNominals",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "list",
+              "value": {
+                "type": "variable",
+                "variable": "ChosenNominals",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "call_function",
+          "values": [
+            {
+              "name": "function_name",
+              "value": {
+                "type": "text",
+                "text": "DeathPointsGen2",
+                "parsing": "plain"
+              }
+            }
+          ]
+        }
+      ],
+      "values": [
+        {
+          "name": "description",
+          "value": {
+            "type": "array",
+            "values": [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          }
+        },
+        {
+          "name": "is_hidden",
+          "value": {
+            "type": "enum",
+            "enum": "FALSE"
+          }
+        },
+        {
+          "name": "icon",
+          "value": {
+            "type": "item",
+            "item": "H4sIAAAAAAAA/41STW8TMRCdNiVKlq8LcKhUKRhxqxAIECWnolaCI+LA1Zr1zmZNvZ6VPdtkqfpf+Kn1pqjuIUj4ZHnevHnvjQuACTw8R8GfFKJlD/A0zmDfVnDYWk8mYC1LbEmaIYo2ro9CYQIPDPdeAGCvgMJw27EnL7GAZ7mrGqjShh0n/CSsSvhDp3uJvuG1tl4LsxPbARRwdG+USLBlL6Rbrmxtk6odPXOY35WLUcUMDmToCF5npt/clpbexA7XXgeyvuZgqB1lTmGK7V8D2zODOXcUUMYE5lhV+hJdT7dBPM6ctd1AGv4kvyR3CTamuK8UfLtSW8NqqV59+nLy9uSjOlZW0FmjljW6SMdKaCOp/sOuGlmcpcrFQngh5KjjIOMd1TV8+H+muvdmFK6uC3iRlZE3DXrZGt4RYQFTR5fk4uj+eW4zacPcap92Dp+ziIGc4/U/NZwTSvOdbZr1lbZK7n2fX/0FlbzRncMBS5fyOojsV/AoQ9693/0zXmZIYyvSaTV29Iouo+AGK2xDccUCAAA="
+          }
+        }
+      ],
+      "name": "DeathPointsGen"
+    },
+    {
+      "type": "function",
+      "position": 2,
+      "operations": [
+        {
+          "action": "repeat_forever",
+          "values": [],
+          "operations": [
+            {
+              "action": "set_variable_value",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "DroppedAnything",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "number",
+                    "number": 0
+                  }
+                }
+              ]
+            },
+            {
+              "action": "repeat_for_each_in_list",
+              "values": [
+                {
+                  "name": "index_variable",
+                  "value": {}
+                },
+                {
+                  "name": "value_variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "Nominal",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "list",
+                  "value": {
+                    "type": "variable",
+                    "variable": "ChosenNominals",
+                    "scope": "local"
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "action": "if_variable_less_or_equals",
+                  "values": [
+                    {
+                      "name": "value",
+                      "value": {
+                        "type": "variable",
+                        "variable": "Nominal",
+                        "scope": "local"
+                      }
+                    },
+                    {
+                      "name": "compare",
+                      "value": {
+                        "type": "variable",
+                        "variable": "ToDrop",
+                        "scope": "local"
+                      }
+                    }
+                  ],
+                  "operations": [
+                    {
+                      "action": "set_variable_append_value",
+                      "values": [
+                        {
+                          "name": "values",
+                          "value": {
+                            "type": "array",
+                            "values": [
+                              {
+                                "type": "variable",
+                                "variable": "Nominal",
+                                "scope": "local"
+                              },
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {},
+                              {}
+                            ]
+                          }
+                        },
+                        {
+                          "name": "variable",
+                          "value": {
+                            "type": "variable",
+                            "variable": "PointDropList",
+                            "scope": "local"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "action": "set_variable_decrement",
+                      "values": [
+                        {
+                          "name": "variable",
+                          "value": {
+                            "type": "variable",
+                            "variable": "ToDrop",
+                            "scope": "local"
+                          }
+                        },
+                        {
+                          "name": "number",
+                          "value": {
+                            "type": "variable",
+                            "variable": "Nominal",
+                            "scope": "local"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "action": "set_variable_value",
+                      "values": [
+                        {
+                          "name": "variable",
+                          "value": {
+                            "type": "variable",
+                            "variable": "DroppedAnything",
+                            "scope": "local"
+                          }
+                        },
+                        {
+                          "name": "value",
+                          "value": {
+                            "type": "number",
+                            "number": 1
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "action": "if_variable_equals",
+              "values": [
+                {
+                  "name": "compare",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "number",
+                        "number": 0
+                      },
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  }
+                },
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "variable",
+                    "variable": "DroppedAnything",
+                    "scope": "local"
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "action": "control_stop_repeat",
+                  "values": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "action": "set_variable_min",
+          "values": [
+            {
+              "name": "value",
+              "value": {
+                "type": "array",
+                "values": [
+                  {
+                    "type": "variable",
+                    "variable": "ToDrop",
+                    "scope": "local"
+                  },
+                  {
+                    "type": "number",
+                    "number": 6
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              }
+            },
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "ToDrop",
+                "scope": "local"
+              }
+            }
+          ]
+        },
+        {
+          "action": "repeat_while",
+          "values": [
+            {
+              "name": "value",
+              "value": {
+                "type": "variable",
+                "variable": "ToDrop",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "compare",
+              "value": {
+                "type": "number",
+                "number": 0
+              }
+            }
+          ],
+          "operations": [
+            {
+              "action": "set_variable_append_value",
+              "values": [
+                {
+                  "name": "values",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "number",
+                        "number": 1
+                      },
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  }
+                },
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "PointDropList",
+                    "scope": "local"
+                  }
+                }
+              ]
+            },
+            {
+              "action": "set_variable_decrement",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "ToDrop",
+                    "scope": "local"
+                  }
+                },
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "number",
+                    "number": 1
+                  }
+                }
+              ]
+            }
+          ],
+          "conditional": {
+            "action": "if_variable_greater",
+            "is_inverted": false
+          }
+        },
+        {
+          "action": "set_variable_get_list_length",
+          "values": [
+            {
+              "name": "variable",
+              "value": {
+                "type": "variable",
+                "variable": "PointDropListLen",
+                "scope": "local"
+              }
+            },
+            {
+              "name": "list",
+              "value": {
+                "type": "variable",
+                "variable": "PointDropList",
+                "scope": "local"
+              }
+            }
+          ]
+        }
+      ],
+      "values": [
+        {
+          "name": "description",
+          "value": {
+            "type": "array",
+            "values": [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          }
+        },
+        {
+          "name": "is_hidden",
+          "value": {
+            "type": "enum",
+            "enum": "FALSE"
+          }
+        },
+        {
+          "name": "icon",
+          "value": {
+            "type": "item",
+            "item": "H4sIAAAAAAAA/41Sy44TMRDs3SxRMrwuwAGBFIy4rRBPscoJxEpwRBy4Wj12T8asxz3y9GwyoP0XPhU7IMwhSPhkqauqq8quAGZw/RwFv1AcHAeA28MCjp2FB50LZCI2svYYN6SxI2mnQXQ92hlcMzwGAYCjCirDXc+BggwV3Ck8O5HVhj3HGczipoYf9PYoLWh5q13QwuzF9QAVPCwkFImuHoV0x9Y1Lvk6wFnC8s+4yi4WcCJTT/CkKH3jrnb0dOhxG3QkFxqOhrpscw5z7H4H2J8FLLmniJI7WKK1+hL9SL+quFk0G7eDtPzWX+VwTLDc47FS8PG72gdWa/X4zbuzZ2ev1alygt4ZtW7QD3SqhHaS5p/dppXV+zS5WAmvhDz1HCXfUV3Bq/9XasZgsnF1VcG94oyCaTHIPvCBCiuYe7okP+T0dwvNjINwp0N6b1gXExN5z9t/ejgnlPYTu7TrA4UX2cr9ovl1vKCad7r3OGHtU2EnA4cN3CiQ5y8Pf41HBdI6m76htS6HRV9Q8BMwZ1i9yAIAAA=="
+          }
+        }
+      ],
+      "name": "DeathPointsGen2"
+    }
+  ]
+}
