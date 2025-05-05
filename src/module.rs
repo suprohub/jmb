@@ -1,20 +1,20 @@
-use std::collections::HashMap;
-
+use heck::ToUpperCamelCase;
 use serde::{Deserialize, Serialize};
+use serde_json::Number;
 
-use crate::generated::{ActionId, ArgType};
+use crate::generated::ActionId;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Module {
-    handlers: Vec<Line>,
+    pub handlers: Vec<Line>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Line {
     #[serde(rename = "type")]
-    line_type: LineType,
-    position: u32,
-    operations: Vec<Op>,
+    pub line_type: LineType,
+    pub position: u32,
+    pub operations: Vec<Op>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -26,49 +26,63 @@ pub enum LineType {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Op {
-    action: ActionId,
+    pub action: ActionId,
     #[serde(rename = "values")]
-    args: Vec<Arg>,
+    pub args: Vec<Arga>,
 }
 
-#[derive(Serialize, Debug)]
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub struct Arga {
+    name: String,
+    #[serde(deserialize_with = "deserialize_arg")]
+    value: Arg,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case", tag = "type")]
 pub enum Arg {
     Any,
+    Array,
+    Block,
+    Enum {
+        #[serde(rename = "enum", deserialize_with = "deserialize_upper_camel")]
+        value: String,
+    },
+    Item,
+    Location,
+    Map,
+    Number(Number),
+    Particle,
+    Potion,
+    Sound,
+    Text,
+    Variable {
+        variable: String,
+        scope: VariableScope,
+    },
+    Vector,
 }
 
-impl<'de> Deserialize<'de> for Arg {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        #[derive(Serialize, Deserialize)]
-        struct Helper {
-            name: String,
-            value: Helper2,
-        }
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum VariableScope {
+    Local,
+    Global,
+    Save,
+}
 
-        #[derive(Serialize, Deserialize)]
-        struct Helper2 {
-            #[serde(rename = "type")]
-            arg_type: Option<ArgType>,
-            #[serde(flatten)]
-            fields: HashMap<String, serde_json::Value>,
-        }
+fn deserialize_arg<'de, D>(deserializer: D) -> Result<Arg, D::Error>
+where
+    D: serde::Deserializer<'de>,
+{
+    Ok(Arg::deserialize(deserializer).unwrap_or(Arg::Any))
+}
 
-        let Helper {
-            name: _,
-            value: Helper2 { arg_type, fields },
-        } = Helper::deserialize(deserializer)?;
-
-        if let Some(arg_type) = arg_type {
-            match arg_type {
-                ArgType::Any => {}
-                ArgType::Array => {}
-                _ => {}
-            }
-            Ok(Arg::Any)
-        } else {
-            Ok(Arg::Any)
-        }
-    }
+fn deserialize_upper_camel<'de, D>(deserializer: D) -> Result<String, D::Error>
+where
+    D: serde::Deserializer<'de>,
+{
+    let s: String = Deserialize::deserialize(deserializer)?;
+    Ok(s.to_upper_camel_case())
 }

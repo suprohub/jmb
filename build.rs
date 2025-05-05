@@ -1,9 +1,8 @@
-use heck::{ToPascalCase, ToSnakeCase, ToUpperCamelCase};
+use heck::{ToPascalCase, ToSnakeCase};
 use itertools::Itertools;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
-use serde_json::Map;
-use std::collections::{BTreeMap, HashMap, HashSet};
+use std::collections::HashSet;
 use std::fs::{self, File};
 use std::io::Write;
 
@@ -19,9 +18,9 @@ fn justmc_skill_issue(name: &str) -> String {
 fn generate_enum(
     f: &mut File,
     enum_name: &str,
-    variants: impl Iterator<Item = String> + Itertools,
+    variants: impl Itertools<Item = String>,
 ) -> Result<(), Box<dyn std::error::Error>> {
-    writeln!(f, "")?;
+    writeln!(f)?;
     writeln!(f, "#[derive(serde::Serialize, serde::Deserialize, Debug)]")?;
     writeln!(f, "#[serde(rename_all = \"snake_case\")]")?;
     writeln!(f, "#[repr(u16)]")?;
