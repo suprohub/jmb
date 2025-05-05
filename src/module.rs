@@ -13,12 +13,13 @@ pub struct Module {
 pub struct Line {
     #[serde(rename = "type")]
     pub line_type: LineType,
-    pub position: u32,
+    pub position: u8,
     pub operations: Vec<Op>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
+#[repr(u8)]
 pub enum LineType {
     Process,
     Function,

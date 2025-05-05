@@ -21,7 +21,10 @@ fn generate_enum(
     variants: impl Itertools<Item = String>,
 ) -> Result<(), Box<dyn std::error::Error>> {
     writeln!(f)?;
-    writeln!(f, "#[derive(serde::Serialize, serde::Deserialize, Debug)]")?;
+    writeln!(
+        f,
+        "#[derive(serde::Serialize, serde::Deserialize, Debug, Clone, Copy)]"
+    )?;
     writeln!(f, "#[serde(rename_all = \"snake_case\")]")?;
     writeln!(f, "#[repr(u16)]")?;
     writeln!(f, "pub enum {} {{", enum_name)?;

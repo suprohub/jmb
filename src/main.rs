@@ -1,7 +1,10 @@
 pub mod assets;
+pub mod bytecode;
 pub mod generated;
 pub mod module;
 use std::{fs::File, io::BufReader};
+
+use bytecode::compile;
 
 fn main() {
     let module: module::Module =
@@ -9,9 +12,12 @@ fn main() {
     println!("{:?}", module);
     //println!("{:?}", get_assets());
 
-    for line in module.handlers {
-        for op in line.operations {
+    for line in &module.handlers {
+        for op in &line.operations {
             println!("{}", op.action as u16)
         }
     }
+
+    println!("batatacode go now");
+    println!("{:?}", compile(module));
 }
