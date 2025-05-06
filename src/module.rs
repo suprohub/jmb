@@ -1,7 +1,7 @@
 use heck::ToUpperCamelCase;
 use serde::{Deserialize, Serialize};
 
-use crate::generated::{ActionId, GameValueId};
+use crate::generated::{ActionIdWants11Bits, GameValueId};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Module {
@@ -12,7 +12,7 @@ pub struct Module {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Line {
     #[serde(rename = "type")]
-    pub line_type: LineType,
+    pub line_type: LineTypeWants2Bits,
     pub position: u8,
     pub operations: Vec<Op>,
 }
@@ -20,7 +20,7 @@ pub struct Line {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 #[repr(u8)]
-pub enum LineType {
+pub enum LineTypeWants2Bits {
     Process,
     Function,
     Event,
@@ -28,7 +28,7 @@ pub enum LineType {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Op {
-    pub action: ActionId,
+    pub action: ActionIdWants11Bits,
     pub values: Vec<NamedValue>,
 }
 
@@ -81,11 +81,11 @@ pub enum Value {
     },
     Text {
         text: String,
-        parsing: TextParsing,
+        parsing: TextParsingWants2Bits,
     },
     Variable {
         variable: String,
-        scope: VariableScope,
+        scope: VariableScopeWants2Bits,
     },
     Vector {
         x: f64,
@@ -111,7 +111,7 @@ pub enum Number {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 #[repr(u8)]
-pub enum TextParsing {
+pub enum TextParsingWants2Bits {
     Legacy,
     Plain,
 }
@@ -119,7 +119,7 @@ pub enum TextParsing {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 #[repr(u8)]
-pub enum VariableScope {
+pub enum VariableScopeWants2Bits {
     Local,
     Global,
     Save,

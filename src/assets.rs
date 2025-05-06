@@ -2,7 +2,9 @@ use std::fs::{self};
 
 use serde::{Deserialize, Serialize};
 
-use crate::generated::{ActionId, ActionObject, ActionType, EventId, GameValueId, ValueType};
+use crate::generated::{
+    ActionIdWants11Bits, ActionObject, ActionType, EventId, GameValueId, ValueType,
+};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Event {
@@ -19,7 +21,7 @@ pub struct GameValue {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Action {
-    pub id: ActionId,
+    pub id: ActionIdWants11Bits,
     #[serde(rename = "type")]
     pub action_type: ActionType,
     pub object: ActionObject,

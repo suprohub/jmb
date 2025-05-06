@@ -7,17 +7,18 @@ use std::{fs::File, io::BufReader};
 use bytecode::compile;
 
 fn main() {
+    simple_logger::init().unwrap();
     let module: module::Module =
         serde_json::from_reader(BufReader::new(File::open("pr1.json").unwrap())).unwrap();
-    println!("{:?}", module);
+    log::info!("{:?}", module);
     //println!("{:?}", get_assets());
 
     for line in &module.handlers {
         for op in &line.operations {
-            println!("{}", op.action as u16)
+            log::info!("{}", op.action as u16)
         }
     }
 
-    println!("batatacode go now");
-    println!("{:?}", compile(module));
+    log::info!("batatacode go now");
+    log::info!("{:?}", compile(module));
 }

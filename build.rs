@@ -115,7 +115,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
-    generate_enum(&mut f, "ActionId", ids.into_iter())?;
+    generate_enum(&mut f, "ActionIdWants11Bits", ids.into_iter())?;
     generate_enum(&mut f, "ActionType", typs.into_iter())?;
     generate_enum(&mut f, "ActionObject", objs.into_iter())?;
     generate_enum(&mut f, "ArgType", arg_types.into_iter())?;
